@@ -54,7 +54,7 @@ namespace VallejosDayana_Examen1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Edad,Id,Nombre,Estatura,EsSoltero,Fecha")] DVallejos dVallejos)
+        public async Task<IActionResult> Create([Bind("Id,Edad,Nombre,Estatura,EsSoltero,Fecha")] DVallejos dVallejos)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace VallejosDayana_Examen1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Edad,Id,Nombre,Estatura,EsSoltero,Fecha")] DVallejos dVallejos)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Edad,Nombre,Estatura,EsSoltero,Fecha")] DVallejos dVallejos)
         {
             if (id != dVallejos.Id)
             {

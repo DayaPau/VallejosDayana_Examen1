@@ -10,11 +10,11 @@ using VallejosDayana_Examen1.Models;
 
 namespace VallejosDayana_Examen1.Controllers
 {
-    public class CelularController : Controller
+    public class CelularsController : Controller
     {
         private readonly VallejosDayana_Examen1Context _context;
 
-        public CelularController(VallejosDayana_Examen1Context context)
+        public CelularsController(VallejosDayana_Examen1Context context)
         {
             _context = context;
         }
@@ -22,7 +22,8 @@ namespace VallejosDayana_Examen1.Controllers
         // GET: Celulars
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Celular.ToListAsync());
+            var vallejosDayana_Examen1Context = _context.Celular.Include(c => c.DVallejos);
+            return View(await vallejosDayana_Examen1Context.ToListAsync());
         }
 
         // GET: Celulars/Details/5
@@ -34,6 +35,7 @@ namespace VallejosDayana_Examen1.Controllers
             }
 
             var celular = await _context.Celular
+                .Include(c => c.DVallejos)
                 .FirstOrDefaultAsync(m => m.IdCelular == id);
             if (celular == null)
             {
@@ -46,6 +48,7 @@ namespace VallejosDayana_Examen1.Controllers
         // GET: Celulars/Create
         public IActionResult Create()
         {
+            ViewData["IdUsuario"] = new SelectList(_context.DVallejos, "Id", "Nombre");
             return View();
         }
 
@@ -62,6 +65,7 @@ namespace VallejosDayana_Examen1.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["IdUsuario"] = new SelectList(_context.DVallejos, "Id", "Nombre", celular.IdUsuario);
             return View(celular);
         }
 
@@ -78,6 +82,7 @@ namespace VallejosDayana_Examen1.Controllers
             {
                 return NotFound();
             }
+            ViewData["IdUsuario"] = new SelectList(_context.DVallejos, "Id", "Nombre", celular.IdUsuario);
             return View(celular);
         }
 
@@ -113,6 +118,7 @@ namespace VallejosDayana_Examen1.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["IdUsuario"] = new SelectList(_context.DVallejos, "Id", "Nombre", celular.IdUsuario);
             return View(celular);
         }
 
@@ -125,6 +131,7 @@ namespace VallejosDayana_Examen1.Controllers
             }
 
             var celular = await _context.Celular
+                .Include(c => c.DVallejos)
                 .FirstOrDefaultAsync(m => m.IdCelular == id);
             if (celular == null)
             {

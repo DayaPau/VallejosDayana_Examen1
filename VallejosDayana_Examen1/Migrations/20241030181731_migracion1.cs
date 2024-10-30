@@ -37,23 +37,24 @@ namespace VallejosDayana_Examen1.Migrations
                     Modelo = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Año = table.Column<int>(type: "int", nullable: false),
                     Precio = table.Column<double>(type: "float", nullable: false),
-                    dVallejosId = table.Column<int>(type: "int", nullable: true),
                     IdUsuario = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Celular", x => x.IdCelular);
                     table.ForeignKey(
-                        name: "FK_Celular_DVallejos_dVallejosId",
-                        column: x => x.dVallejosId,
+                        name: "FK_Celular_DVallejos_IdUsuario",
+                        column: x => x.IdUsuario,
                         principalTable: "DVallejos",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Celular_dVallejosId",
+                name: "IX_Celular_IdUsuario",
                 table: "Celular",
-                column: "dVallejosId");
+                column: "IdUsuario",
+                unique: true);
         }
 
         /// <inheritdoc />

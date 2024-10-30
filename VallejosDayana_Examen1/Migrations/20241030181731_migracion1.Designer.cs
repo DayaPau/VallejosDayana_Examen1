@@ -12,7 +12,7 @@ using VallejosDayana_Examen1.Data;
 namespace VallejosDayana_Examen1.Migrations
 {
     [DbContext(typeof(VallejosDayana_Examen1Context))]
-    [Migration("20241030175827_migracion1")]
+    [Migration("20241030181731_migracion1")]
     partial class migracion1
     {
         /// <inheritdoc />
@@ -47,12 +47,10 @@ namespace VallejosDayana_Examen1.Migrations
                     b.Property<double>("Precio")
                         .HasColumnType("float");
 
-                    b.Property<int?>("dVallejosId")
-                        .HasColumnType("int");
-
                     b.HasKey("IdCelular");
 
-                    b.HasIndex("dVallejosId");
+                    b.HasIndex("IdUsuario")
+                        .IsUnique();
 
                     b.ToTable("Celular");
                 });
@@ -89,11 +87,18 @@ namespace VallejosDayana_Examen1.Migrations
 
             modelBuilder.Entity("VallejosDayana_Examen1.Models.Celular", b =>
                 {
-                    b.HasOne("VallejosDayana_Examen1.Models.DVallejos", "dVallejos")
-                        .WithMany()
-                        .HasForeignKey("dVallejosId");
+                    b.HasOne("VallejosDayana_Examen1.Models.DVallejos", "DVallejos")
+                        .WithOne("Celular")
+                        .HasForeignKey("VallejosDayana_Examen1.Models.Celular", "IdUsuario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("dVallejos");
+                    b.Navigation("DVallejos");
+                });
+
+            modelBuilder.Entity("VallejosDayana_Examen1.Models.DVallejos", b =>
+                {
+                    b.Navigation("Celular");
                 });
 #pragma warning restore 612, 618
         }
