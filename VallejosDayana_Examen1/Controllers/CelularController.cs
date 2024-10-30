@@ -10,11 +10,11 @@ using VallejosDayana_Examen1.Models;
 
 namespace VallejosDayana_Examen1.Controllers
 {
-    public class CelularsController : Controller
+    public class CelularController : Controller
     {
         private readonly VallejosDayana_Examen1Context _context;
 
-        public CelularsController(VallejosDayana_Examen1Context context)
+        public CelularController(VallejosDayana_Examen1Context context)
         {
             _context = context;
         }
