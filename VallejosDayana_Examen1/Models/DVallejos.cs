@@ -19,7 +19,8 @@ namespace VallejosDayana_Examen1.Models
 
         public  DateTime Fecha{ get; set; }
 
-        public Celular celular { get; set; }
+
+
 
     }
 }

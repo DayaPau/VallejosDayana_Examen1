@@ -6,7 +6,7 @@ namespace VallejosDayana_Examen1.Models
     public class Celular
     {
         [Key]
-        public int IdCelular { get; set; } 
+        public int IdCelular { get; set; }
 
         [Required]
 
@@ -17,10 +17,10 @@ namespace VallejosDayana_Examen1.Models
         [Range(300, 1000)]
         public double Precio { get; set; }
 
+        public DVallejos? dVallejos { get; set; }
 
-        [ForeignKey("DVallejos")]
-        public DVallejos dVallejos { get; set; }
-
+        [ForeignKey(nameof(DVallejos))]
+        
         public int IdUsuario { get; set; }
 
 
