@@ -3,4 +3,9 @@
 
 // Write your JavaScript code.
 
-function C
+function CrearAlerta() {
+
+    alert("Mi nombre es: Dayana Vallejos y mi hobbie es: Escuchar musica");
+
+
+}
